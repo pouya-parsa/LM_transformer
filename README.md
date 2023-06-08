@@ -39,6 +39,7 @@ Evaluate the model on validation set:
 accu_val, loss_val = evaluate(model, optimizer, criterion, val_dataloader)
 ``` 
 
-
-
-
+## Visualizing Loss (left: train, right: validation)
+Here is the loss after 30 minutes of training.
+<br/>
+<img src="images/train_loss.png" width="350" /> <img src="images/val_loss.png" width="350" />
