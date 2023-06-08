@@ -3,12 +3,11 @@ import torch
 import torch.nn as nn
 from torch.utils.data.dataset import random_split
 from torchtext.data.functional import to_map_style_dataset
-from predictor import Predictor
-from settings import max_seq_length, embed_dim, device, epochs, lr
-from predictor import Predictor
 from dataset.build_dataloader import DataloaderBulder
+from predictor import Predictor
 from train import train
 from evaluate import evaluate
+from settings import max_seq_length, embed_dim, device, epochs, lr
 
 dataloader_builder = DataloaderBulder()
 vocab_size = dataloader_builder.vocab_size
@@ -16,15 +15,15 @@ train_dataloader, val_dataloader = dataloader_builder.get_loaders()
 
 model = Predictor(max_seq_length, vocab_size, embed_dim, 6)
 model.to(device)
-input_data = torch.randint(low=0, high=10, size=(8, 100))
-input_data = input_data.to(device)
-out_dist = model(input_data)
+# input_data = torch.randint(low=0, high=10, size=(8, 100))
+# input_data = input_data.to(device)
+# out_dist = model(input_data)
 
 criterion = nn.NLLLoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=lr)
 scheduler = torch.optim.lr_scheduler.StepLR(optimizer, 1.0, gamma=0.1)
-total_accu = None
 
+total_accu = None
 train_loss_list = []
 train_acc_list = []
 val_loss_list = []
